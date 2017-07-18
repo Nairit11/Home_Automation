@@ -1,15 +1,15 @@
 const int trigPin = 2;
 const int echoPin = 3;
  
-int time = 60; // how many minimum seconds gap you wanna keep betwwen two e-mails
+int time = 60; // how many minimum seconds gap you wanna keep between two e-mails
  
 long lastSend = -time * 1000;
 int distance=0;
 
 void setup() {
-  // initialize serial communication:
+
   Serial.begin(9600);
-  pinMode(6,OUTPUT); //buzzer
+  pinMode(6,OUTPUT); //buzzer pin
    Serial.begin(9600);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
@@ -17,11 +17,9 @@ void setup() {
 
 void loop()
 {
-  // establish variables for duration of the ping, 
-  // and the distance result in inches and centimeters:
   long duration, cm;
    long now = millis();
-  // The sensor is triggered by a HIGH pulse of 10 or more microseconds.
+
   // Give a short LOW pulse beforehand to ensure a clean HIGH pulse:
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
@@ -32,7 +30,7 @@ void loop()
   distance = duration/58.2;
   Serial.println(distance);
   delay(1000);
-  if(distance<10)
+  if(distance<20)
     {
       digitalWrite(6, HIGH);
       delay(2000); 
